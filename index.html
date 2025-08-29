@@ -3,1391 +3,825 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collaborative Project Management Hub</title>
+    <title>Blended Collective - Project Management Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      * { 
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        box-sizing: border-box;
-      }
-      
-      /* Studio 77 Inspired Design System */
-      :root {
-        /* Sophisticated Monochrome Palette */
-        --color-primary: #000000;
-        --color-accent: #6366f1;
-        --color-success: #10b981;
-        --color-warning: #f59e0b;
-        --color-error: #ef4444;
-        
-        /* Refined Neutrals */
-        --color-white: #ffffff;
-        --color-gray-50: #fafafa;
-        --color-gray-100: #f5f5f5;
-        --color-gray-200: #e5e5e5;
-        --color-gray-300: #d4d4d4;
-        --color-gray-400: #a3a3a3;
-        --color-gray-500: #737373;
-        --color-gray-600: #525252;
-        --color-gray-700: #404040;
-        --color-gray-800: #262626;
-        --color-gray-900: #171717;
-        --color-black: #000000;
-        
-        /* Sophisticated Shadows */
-        --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
-        --shadow-soft: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
-        --shadow-medium: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
-        --shadow-strong: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
-        
-        /* Refined Spacing */
-        --space-xs: 4px;
-        --space-sm: 8px;
-        --space-md: 16px;
-        --space-lg: 24px;
-        --space-xl: 32px;
-        --space-2xl: 48px;
-        --space-3xl: 64px;
-        --space-4xl: 96px;
-        
-        /* Modern Radii */
-        --radius-sm: 4px;
-        --radius-md: 8px;
-        --radius-lg: 12px;
-        --radius-xl: 16px;
-        --radius-2xl: 24px;
-        
-        /* Typography Scale */
-        --text-xs: 0.75rem;
-        --text-sm: 0.875rem;
-        --text-base: 1rem;
-        --text-lg: 1.125rem;
-        --text-xl: 1.25rem;
-        --text-2xl: 1.5rem;
-        --text-3xl: 1.875rem;
-        --text-4xl: 2.25rem;
-        --text-5xl: 3rem;
-      }
-      
-      /* Sophisticated Card System */
-      .card {
-        background: var(--color-white);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-subtle);
-        border: 1px solid var(--color-gray-200);
-        transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden;
-      }
-      
-      .card:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-medium);
-        border-color: var(--color-gray-300);
-      }
-      
-      .card-compact {
-        padding: var(--space-lg);
-      }
-      
-      .card-spacious {
-        padding: var(--space-xl);
-      }
-      
-      .card-elevated {
-        box-shadow: var(--shadow-soft);
-        border: none;
-      }
-      
-      .card-elevated:hover {
-        box-shadow: var(--shadow-strong);
-      }
-      
-      /* Refined Typography System */
-      .display-title {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: var(--text-5xl);
-        font-weight: 700;
-        color: var(--color-primary);
-        line-height: 1.1;
-        letter-spacing: -0.025em;
-      }
-      
-      .page-title {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: var(--text-4xl);
-        font-weight: 600;
-        color: var(--color-primary);
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-      }
-      
-      .section-title {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: var(--text-2xl);
-        font-weight: 600;
-        color: var(--color-gray-900);
-        line-height: 1.3;
-        letter-spacing: -0.01em;
-      }
-      
-      .card-title {
-        font-size: var(--text-lg);
-        font-weight: 600;
-        color: var(--color-gray-900);
-        line-height: 1.4;
-      }
-      
-      .body-text {
-        font-size: var(--text-base);
-        color: var(--color-gray-700);
-        line-height: 1.6;
-        font-weight: 400;
-      }
-      
-      .meta-text {
-        font-size: var(--text-sm);
-        color: var(--color-gray-500);
-        font-weight: 400;
-        line-height: 1.5;
-      }
-      
-      .label-text {
-        font-size: var(--text-xs);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--color-gray-600);
-      }
-      
-      /* Refined Status System */
-      .status-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-xs);
-        padding: var(--space-xs) var(--space-sm);
-        border-radius: var(--radius-sm);
-        font-size: var(--text-xs);
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        transition: all 200ms ease;
-        border: 1px solid transparent;
-      }
-      
-      .status-completed {
-        background: rgba(16, 185, 129, 0.1);
-        color: var(--color-success);
-        border-color: rgba(16, 185, 129, 0.2);
-      }
-      
-      .status-progress {
-        background: rgba(99, 102, 241, 0.1);
-        color: var(--color-accent);
-        border-color: rgba(99, 102, 241, 0.2);
-      }
-      
-      .status-pending {
-        background: rgba(245, 158, 11, 0.1);
-        color: var(--color-warning);
-        border-color: rgba(245, 158, 11, 0.2);
-      }
-      
-      .status-blocked {
-        background: rgba(239, 68, 68, 0.1);
-        color: var(--color-error);
-        border-color: rgba(239, 68, 68, 0.2);
-      }
-      
-      .status-neutral {
-        background: var(--color-gray-100);
-        color: var(--color-gray-600);
-        border-color: var(--color-gray-200);
-      }
-      
-      /* Sophisticated Navigation */
-      .nav-container {
-        background: var(--color-white);
-        border: 1px solid var(--color-gray-200);
-        border-radius: var(--radius-xl);
-        padding: var(--space-xs);
-        display: flex;
-        gap: var(--space-xs);
-        overflow-x: auto;
-      }
-      
-      .nav-tab {
-        position: relative;
-        padding: var(--space-md) var(--space-lg);
-        border-radius: var(--radius-lg);
-        transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-        font-weight: 500;
-        font-size: var(--text-sm);
-        color: var(--color-gray-600);
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-      }
-      
-      .nav-tab:hover {
-        background: var(--color-gray-50);
-        color: var(--color-gray-900);
-        transform: translateY(-1px);
-      }
-      
-      .nav-tab.active {
-        background: var(--color-primary);
-        color: var(--color-white);
-        box-shadow: var(--shadow-soft);
-      }
-      
-      .nav-tab.active:hover {
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-medium);
-      }
-      
-      /* Sophisticated Editable Elements */
-      .editable {
-        border: 1px dashed transparent;
-        padding: var(--space-sm) var(--space-md);
-        border-radius: var(--radius-md);
-        transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: text;
-        position: relative;
-      }
-      
-      .editable:hover {
-        border-color: var(--color-gray-300);
-        background: var(--color-gray-50);
-        box-shadow: var(--shadow-subtle);
-      }
-      
-      .editable:focus {
-        outline: none;
-        border-color: var(--color-accent);
-        background: var(--color-white);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-      }
-      
-      /* Sophisticated Button System */
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-sm);
-        padding: var(--space-md) var(--space-lg);
-        border-radius: var(--radius-lg);
-        font-weight: 500;
-        font-size: var(--text-sm);
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid transparent;
-      }
-      
-      .btn-primary {
-        background: var(--color-primary);
-        color: var(--color-white);
-        box-shadow: var(--shadow-soft);
-      }
-      
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-medium);
-        background: var(--color-gray-800);
-      }
-      
-      .btn-secondary {
-        background: var(--color-white);
-        color: var(--color-gray-700);
-        border-color: var(--color-gray-300);
-      }
-      
-      .btn-secondary:hover {
-        background: var(--color-gray-50);
-        border-color: var(--color-gray-400);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-subtle);
-      }
-      
-      .btn-ghost {
-        background: transparent;
-        color: var(--color-gray-600);
-        padding: var(--space-sm) var(--space-md);
-      }
-      
-      .btn-ghost:hover {
-        background: var(--color-gray-50);
-        color: var(--color-gray-900);
-      }
-      
-      /* Refined Notifications */
-      .notification {
-        position: fixed;
-        top: var(--space-lg);
-        right: var(--space-lg);
-        z-index: 1000;
-        padding: var(--space-lg) var(--space-xl);
-        border-radius: var(--radius-lg);
-        font-weight: 500;
-        font-size: var(--text-sm);
-        box-shadow: var(--shadow-strong);
-        animation: slideIn 400ms cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid;
-      }
-      
-      .notification.success {
-        background: var(--color-white);
-        color: var(--color-success);
-        border-color: rgba(16, 185, 129, 0.2);
-      }
-      
-      .notification.error {
-        background: var(--color-white);
-        color: var(--color-error);
-        border-color: rgba(239, 68, 68, 0.2);
-      }
-      
-      .notification.info {
-        background: var(--color-white);
-        color: var(--color-accent);
-        border-color: rgba(99, 102, 241, 0.2);
-      }
-      
-      @keyframes slideIn {
-        from { 
-          opacity: 0; 
-          transform: translateX(100%) scale(0.95); 
-        }
-        to { 
-          opacity: 1; 
-          transform: translateX(0) scale(1); 
-        }
-      }
-      
-      /* Sophisticated Loading */
-      .loading-container {
-        background: var(--color-white);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .loading-content {
-        text-align: center;
-        max-width: 320px;
-      }
-      
-      .loading-spinner {
-        width: 48px;
-        height: 48px;
-        border: 2px solid var(--color-gray-200);
-        border-top: 2px solid var(--color-primary);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 0 auto var(--space-xl);
-      }
-      
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      /* Refined Utility Classes */
-      .glass-surface {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-      }
-      
-      .surface-elevated {
-        background: var(--color-white);
-        box-shadow: var(--shadow-soft);
-        border: 1px solid var(--color-gray-200);
-      }
-      
-      .fade-in {
-        animation: fadeIn 400ms cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      
-      .slide-up {
-        animation: slideUp 300ms cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      
-      @keyframes fadeIn {
-        from { 
-          opacity: 0; 
-          transform: translateY(8px) scale(0.98); 
-        }
-        to { 
-          opacity: 1; 
-          transform: translateY(0) scale(1); 
-        }
-      }
-      
-      @keyframes slideUp {
-        from { 
-          opacity: 0; 
-          transform: translateY(20px); 
-        }
-        to { 
-          opacity: 1; 
-          transform: translateY(0); 
-        }
-      }
-      
-      /* Modern Form Elements */
-      input, textarea, select {
-        padding: var(--space-md);
-        border: 1px solid var(--color-gray-300);
-        border-radius: var(--radius-md);
-        font-size: var(--text-sm);
-        transition: all 200ms ease;
-        background: var(--color-white);
-      }
-      
-      input:focus, textarea:focus, select:focus {
-        outline: none;
-        border-color: var(--color-accent);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-      }
-      
-      /* Table Styling */
-      .modern-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      
-      .modern-table th {
-        padding: var(--space-lg);
-        text-align: left;
-        font-weight: 600;
-        color: var(--color-gray-700);
-        background: var(--color-gray-50);
-        border-bottom: 1px solid var(--color-gray-200);
-      }
-      
-      .modern-table td {
-        padding: var(--space-lg);
-        border-bottom: 1px solid var(--color-gray-100);
-        vertical-align: top;
-      }
-      
-      .modern-table tbody tr:hover {
-        background: var(--color-gray-50);
-      }
+        .studio77-bg { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); }
+        .studio77-text { color: #e5e5e5; }
+        .studio77-accent { color: #00ff88; }
+        .studio77-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .studio77-btn { background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%); color: #1a1a1a; }
+        .studio77-btn:hover { background: linear-gradient(135deg, #00cc6a 0%, #00ff88 100%); }
     </style>
 </head>
-<body style="background: var(--color-gray-50); margin: 0; min-height: 100vh;">
-    <div id="app" class="min-h-screen">
-      <div class="loading-container">
-        <div class="loading-content">
-          <div class="loading-spinner"></div>
-          <h2 class="page-title" style="margin-bottom: var(--space-md);">Project Management Hub</h2>
-          <p class="meta-text">Setting up your collaborative workspace...</p>
+<body class="studio77-bg min-h-screen studio77-text">
+    <div id="loadingScreen" class="fixed inset-0 studio77-bg flex items-center justify-center z-50">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-studio77-accent mx-auto"></div>
+            <p class="mt-4 text-lg">Loading Project Hub...</p>
         </div>
-      </div>
     </div>
-    
+
+    <div id="mainApp" class="hidden">
+        <header class="studio77-card m-4 rounded-lg p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 id="projectTitle" class="text-3xl font-bold studio77-text mb-2" contenteditable="true">Blended Collective Website Rebuild</h1>
+                    <p id="projectPeriod" class="text-lg studio77-accent" contenteditable="true">Project Management Hub</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm opacity-75">Last updated: <span id="lastUpdated">Just now</span></p>
+                    <p class="text-sm opacity-75">Status: <span class="studio77-accent">Active</span></p>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 m-4">
+            <!-- Prerequisites Section -->
+            <div class="studio77-card rounded-lg p-6">
+                <h2 class="text-xl font-semibold mb-4 flex items-center">
+                    <i class="fas fa-check-circle studio77-accent mr-2"></i>
+                    Prerequisites
+                </h2>
+                <div id="prerequisitesList" class="space-y-3">
+                    <!-- Prerequisites will be loaded here -->
+                </div>
+                <button onclick="addPrerequisite()" class="mt-4 studio77-btn px-4 py-2 rounded font-medium">
+                    <i class="fas fa-plus mr-2"></i>Add Prerequisite
+                </button>
+            </div>
+
+            <!-- Asset Categories Section -->
+            <div class="studio77-card rounded-lg p-6">
+                <h2 class="text-xl font-semibold mb-4 flex items-center">
+                    <i class="fas fa-folder studio77-accent mr-2"></i>
+                    Asset Categories
+                </h2>
+                <div id="assetCategoriesList" class="space-y-4">
+                    <!-- Asset categories will be loaded here -->
+                </div>
+                <button onclick="addAssetCategory()" class="mt-4 studio77-btn px-4 py-2 rounded font-medium">
+                    <i class="fas fa-plus mr-2"></i>Add Category
+                </button>
+            </div>
+        </div>
+
+        <!-- Phases Section -->
+        <div class="studio77-card m-4 rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-tasks studio77-accent mr-2"></i>
+                Project Phases
+            </h2>
+            <div id="phasesList" class="space-y-4">
+                <!-- Phases will be loaded here -->
+            </div>
+            <button onclick="addPhase()" class="mt-4 studio77-btn px-4 py-2 rounded font-medium">
+                <i class="fas fa-plus mr-2"></i>Add Phase
+            </button>
+        </div>
+
+        <!-- Milestones Section -->
+        <div class="studio77-card m-4 rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-flag studio77-accent mr-2"></i>
+                Milestones
+            </h2>
+            <div id="milestonesList" class="space-y-3">
+                <!-- Milestones will be loaded here -->
+            </div>
+            <button onclick="addMilestone()" class="mt-4 studio77-btn px-4 py-2 rounded font-medium">
+                <i class="fas fa-plus mr-2"></i>Add Milestone
+            </button>
+        </div>
+
+        <!-- Calls Section -->
+        <div class="studio77-card m-4 rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-phone studio77-accent mr-2"></i>
+                Scheduled Calls
+            </h2>
+            <div id="callsList" class="space-y-3">
+                <!-- Calls will be loaded here -->
+            </div>
+            <button onclick="addCall()" class="mt-4 studio77-btn px-4 py-2 rounded font-medium">
+                <i class="fas fa-plus mr-2"></i>Schedule Call
+            </button>
+        </div>
+
+        <!-- Change Log Section -->
+        <div class="studio77-card m-4 rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-history studio77-accent mr-2"></i>
+                Change Log
+            </h2>
+            <div id="changeLogList" class="space-y-2 max-h-60 overflow-y-auto">
+                <!-- Change log will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <script>
-      let currentUser = localStorage.getItem('projectHub_userName') || '';
-      let projectData = {};
-      let lastCheck = 0;
-      let currentActiveTab = 'tasks'; // Track current tab - default to tasks
-      
-      function showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        setTimeout(() => notification.remove(), 3000);
-      }
-      
-      function showUserModal() {
-        if (currentUser) return;
-        
-        const modal = document.createElement('div');
-        modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
-        modal.innerHTML = `
-          <div class="card card-elevated slide-up" style="max-width: 480px; width: 100%; margin: var(--space-lg); padding: var(--space-4xl);">
-            <div style="text-align: center; margin-bottom: var(--space-3xl);">
-              <div style="width: 64px; height: 64px; margin: 0 auto var(--space-lg); background: var(--color-primary); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-user-plus" style="color: white; font-size: 24px;"></i>
-              </div>
-              <h2 class="page-title" style="margin-bottom: var(--space-md);">Welcome to Project Hub</h2>
-              <p class="meta-text">Enter your name to join the collaborative workspace</p>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
-              <input type="text" id="userNameInput" placeholder="Your name..." autofocus 
-                     style="width: 100%; padding: var(--space-lg); font-size: var(--text-lg);">
-              <button onclick="setUserName()" class="btn btn-primary" 
-                      style="width: 100%; padding: var(--space-lg); font-size: var(--text-lg);">Join Workspace</button>
-            </div>
-          </div>
-        `;
-        document.body.appendChild(modal);
-        
-        const input = document.getElementById('userNameInput');
-        input.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') setUserName();
-        });
-      }
-      
-      function setUserName() {
-        const input = document.getElementById('userNameInput');
-        const name = input.value.trim();
-        if (!name) {
-          alert('Please enter your name');
-          return;
-        }
-        
-        currentUser = name;
-        localStorage.setItem('projectHub_userName', name);
-        document.querySelector('.fixed.inset-0').remove();
-        
-        // Register user
-        fetch('/api/user', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userName: currentUser })
-        });
-        
-        initApp();
-      }
-      
-      async function loadData() {
-        try {
-          const response = await fetch('/api/data');
-          projectData = await response.json();
-          renderApp();
-        } catch (error) {
-          console.error('Failed to load data:', error);
-          showNotification('Failed to load project data', 'error');
-        }
-      }
-      
-      async function saveData(data, action = 'update') {
-        try {
-          const response = await fetch('/api/data', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data, user: currentUser })
-          });
-          
-          if (response.ok) {
-            showNotification('Changes saved successfully');
-            return true;
-          }
-          return false;
-        } catch (error) {
-          console.error('Failed to save data:', error);
-          showNotification('Failed to save changes', 'error');
-          return false;
-        }
-      }
-      
-      // Helper function to refresh data after operations - keeps current tab
-      function refreshAfterChange() {
-        setTimeout(async () => {
-          await loadData();
-          // Re-render current tab
-          if (currentActiveTab) {
-            showTab(currentActiveTab);
-          }
-        }, 100);
-      }
-      
-      function renderApp() {
-        const app = document.getElementById('app');
-        app.innerHTML = `
-          <div style="min-height: 100vh; background: var(--color-gray-50);">
-            <!-- Refined Header -->
-            <header class="surface-elevated" style="position: sticky; top: 0; z-index: 40;">
-              <div style="max-width: 1200px; margin: 0 auto; padding: var(--space-2xl) var(--space-xl);">
-                <div style="display: flex; align-items: center; justify-content: space-between;">
-                  <div style="display: flex; align-items: center; gap: var(--space-lg);">
-                    <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;">
-                      <i class="fas fa-project-diagram" style="color: white; font-size: 20px;"></i>
-                    </div>
-                    <div>
-                      <h1 class="page-title editable" contenteditable="true" onblur="updateProjectInfo('title', this.textContent)">${projectData.title}</h1>
-                      <p class="meta-text editable" contenteditable="true" onblur="updateProjectInfo('period', this.textContent)">${projectData.period}</p>
-                    </div>
-                  </div>
-                  <div style="display: flex; align-items: center; gap: var(--space-lg);">
-                    <div style="text-align: right;">
-                      <div class="label-text">Welcome back</div>
-                      <div class="card-title">${currentUser}</div>
-                    </div>
-                    <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                      <span style="color: white; font-weight: 600; font-size: var(--text-lg);">${currentUser.charAt(0).toUpperCase()}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </header>
+        let projectData = {};
 
-            <!-- Sophisticated Navigation -->
-            <div style="max-width: 1200px; margin: 0 auto; padding: var(--space-3xl) var(--space-xl) var(--space-xl);">
-              <div class="nav-container">
-                <button class="nav-tab active" onclick="showTab('tasks')">
-                  <i class="fas fa-tasks"></i>Task Tracker
-                </button>
-                <button class="nav-tab" onclick="showTab('prerequisites')">
-                  <i class="fas fa-list-check"></i>Prerequisites
-                </button>
-                <button class="nav-tab" onclick="showTab('assets')">
-                  <i class="fas fa-box"></i>Assets
-                </button>
-                <button class="nav-tab" onclick="showTab('milestones')">
-                  <i class="fas fa-flag"></i>Milestones
-                </button>
-                <button class="nav-tab" onclick="showTab('calls')">
-                  <i class="fas fa-phone"></i>Discussions
-                </button>
-                <button class="nav-tab" onclick="showTab('changelog')">
-                  <i class="fas fa-history"></i>Activity
-                </button>
-              </div>
-            </div>
-            
-            <!-- Content Area -->
-            <main style="max-width: 1200px; margin: 0 auto; padding: 0 var(--space-xl) var(--space-4xl);" id="tabContent">
-              ${renderTasks()}
-            </main>
-          </div>
-        `;
-      }
-      
-      function showTab(tabName) {
-        // Update global tab state
-        currentActiveTab = tabName;
-        
-        // Update visual state
-        document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
-        
-        // Find and activate the correct tab button
-        const targetBtn = document.querySelector(`[onclick*="showTab('${tabName}')"]`);
-        if (targetBtn) {
-          targetBtn.classList.add('active');
-        }
-        
-        const content = document.getElementById('tabContent');
-        
-        switch (tabName) {
-          case 'prerequisites':
-            content.innerHTML = renderPrerequisites();
-            break;
-          case 'assets':
-            content.innerHTML = renderAssets();
-            break;
-          case 'tasks':
-            content.innerHTML = renderTasks();
-            break;
-          case 'milestones':
-            content.innerHTML = renderMilestones();
-            break;
-          case 'calls':
-            content.innerHTML = renderCalls();
-            break;
-          case 'changelog':
-            content.innerHTML = renderChangeLog();
-            break;
-        }
-        
-        // Add fade-in animation to content
-        content.classList.add('fade-in');
-        setTimeout(() => content.classList.remove('fade-in'), 300);
-      }
-      
-      function renderPrerequisites() {
-        return `
-          <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3xl);">
-              <h2 class="section-title">Prerequisites Checklist</h2>
-              <button onclick="addPrerequisite()" class="btn btn-primary">
-                <i class="fas fa-plus"></i>Add Prerequisite
-              </button>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
-              ${projectData.prerequisites?.map(item => `
-                <div class="card card-spacious">
-                  <div style="display: flex; align-items: start; gap: var(--space-lg);">
-                    <input type="checkbox" ${item.completed ? 'checked' : ''} 
-                           onchange="togglePrerequisite(${item.id}, this.checked)" 
-                           class="w-5 h-5 text-green-600 rounded mt-1">
-                    <div class="flex-1">
-                      <div class="editable text-lg text-gray-800" 
-                           contenteditable="true" 
-                           onblur="updatePrerequisiteItem(${item.id}, this.textContent)">${item.item}</div>
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-                        <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-1">Updated By</label>
-                          <div class="text-sm text-gray-600">${item.updatedBy} - ${new Date(item.updatedAt).toLocaleString()}</div>
-                        </div>
-                        <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-1">Comments</label>
-                          <textarea class="w-full text-sm border border-gray-300 rounded px-2 py-1 resize-none" 
-                                    rows="2" placeholder="Add comments..."
-                                    onblur="updatePrerequisiteComments(${item.id}, this.value)">${item.comments || ''}</textarea>
-                        </div>
-                      </div>
-                    </div>
-                    <button onclick="removePrerequisite(${item.id})" class="text-red-500 hover:text-red-700 px-2">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
-              `).join('') || '<p class="text-gray-500 text-center py-8">No prerequisites yet.</p>'}
-            </div>
-          </div>
-        `;
-      }
-      
-      function renderTasks() {
-        return `
-          <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3xl);">
-              <h2 class="section-title">Task-wise Project Tracker</h2>
-              <button onclick="addPhase()" class="btn btn-primary">
-                <i class="fas fa-plus"></i>Add Phase
-              </button>
-            </div>
-            ${projectData.phases?.map(phase => `
-              <div class="card card-elevated" style="margin-bottom: var(--space-3xl);">
-                <div style="background: var(--color-primary); color: white; padding: var(--space-xl); border-radius: var(--radius-lg) var(--radius-lg) 0 0; margin: calc(-1 * var(--space-xl)) calc(-1 * var(--space-xl)) var(--space-xl) calc(-1 * var(--space-xl));">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div style="flex: 1;">
-                      <h3 class="card-title editable" style="color: white; margin-bottom: var(--space-sm);" 
-                          contenteditable="true"
-                          onblur="updatePhase(${phase.id}, 'name', this.textContent)">${phase.name}</h3>
-                      <p class="meta-text editable" style="color: rgba(255, 255, 255, 0.8);" 
-                         contenteditable="true"
-                         onblur="updatePhase(${phase.id}, 'period', this.textContent)">${phase.period}</p>
-                    </div>
-                    <button onclick="removePhase(${phase.id})" class="btn-ghost" style="color: white; padding: var(--space-sm);">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
-                
-                <div style="overflow-x: auto;">
-                  <table class="modern-table">
-                    <thead>
-                      <tr>
-                        <th>Task</th>
-                        <th>Assignee</th>
-                        <th>Due Date</th>
-                        <th>Status</th>
-                        <th>Updated By</th>
-                        <th>Comments</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      ${phase.tasks?.map(task => `
-                        <tr class="border-b border-gray-100 hover:bg-gray-50">
-                          <td class="px-4 py-3">
-                            <div class="editable font-medium" 
-                                 contenteditable="true"
-                                 onblur="updateTask(${task.id}, 'task', this.textContent)">${task.task}</div>
-                          </td>
-                          <td class="px-4 py-3">
-                            <div class="editable" 
-                                 contenteditable="true"
-                                 onblur="updateTask(${task.id}, 'assignee', this.textContent)">${task.assignee}</div>
-                          </td>
-                          <td class="px-4 py-3">
-                            <div class="editable" 
-                                 contenteditable="true"
-                                 onblur="updateTask(${task.id}, 'dueDate', this.textContent)">${task.dueDate}</div>
-                          </td>
-                          <td>
-                            <select onchange="updateTask(${task.id}, 'status', this.value)" style="padding: var(--space-xs) var(--space-sm); border-radius: var(--radius-sm); border: 1px solid var(--color-gray-300); font-size: var(--text-xs);">
-                              <option value="not-started" ${task.status === 'not-started' ? 'selected' : ''}>Not Started</option>
-                              <option value="pending" ${task.status === 'pending' ? 'selected' : ''}>Pending</option>
-                              <option value="progress" ${task.status === 'progress' ? 'selected' : ''}>In Progress</option>
-                              <option value="completed" ${task.status === 'completed' ? 'selected' : ''}>Completed</option>
-                              <option value="blocked" ${task.status === 'blocked' ? 'selected' : ''}>Blocked</option>
-                            </select>
-                            <div class="status-badge status-${task.status}" style="margin-top: var(--space-xs);">${task.status}</div>
-                          </td>
-                          <td>
-                            <div class="meta-text">${task.updatedBy}</div>
-                            <div class="meta-text" style="color: var(--color-gray-400);">${new Date(task.updatedAt).toLocaleDateString()}</div>
-                          </td>
-                          <td>
-                            <textarea rows="2" placeholder="Task comments..." style="width: 100%; resize: none;"
-                                      onblur="updateTask(${task.id}, 'comments', this.value)">${task.comments || ''}</textarea>
-                          </td>
-                          <td>
-                            <button onclick="removeTask(${task.id})" class="btn-ghost" style="color: var(--color-error);">
-                              <i class="fas fa-trash"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      `).join('')}
-                    </tbody>
-                  </table>
-                  
-                  <div style="padding: var(--space-lg); background: var(--color-gray-50); border-top: 1px solid var(--color-gray-200);">
-                    <button onclick="addTask(${phase.id})" class="btn btn-secondary">
-                      <i class="fas fa-plus"></i>Add Task
-                    </button>
-                  </div>
-                </div>
-              </div>
-            `).join('') || '<p class="text-gray-500 text-center py-8">No phases yet.</p>'}
-          </div>
-        `;
-      }
-      
-      function renderAssets() {
-        return `
-          <div>
-            <div class="flex justify-between items-center mb-6">
-              <h2 class="text-2xl font-bold text-gray-800">Asset Requirements</h2>
-              <button onclick="addAssetCategory()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded">
-                <i class="fas fa-plus mr-1"></i>Add Category
-              </button>
-            </div>
-            <div class="space-y-6">
-              ${projectData.assetCategories?.map(category => `
-                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <h3 class="text-xl font-semibold text-gray-800 editable" 
-                          contenteditable="true"
-                          onblur="updateAssetCategory(${category.id}, 'name', this.textContent)">${category.name}</h3>
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                        <div>
-                          <span class="text-sm text-gray-600">Updated by ${category.updatedBy} - ${new Date(category.updatedAt).toLocaleString()}</span>
-                        </div>
-                        <div>
-                          <textarea class="w-full text-sm border border-gray-300 rounded px-2 py-1 resize-none" 
-                                    rows="2" placeholder="Category comments..."
-                                    onblur="updateAssetCategory(${category.id}, 'comments', this.value)">${category.comments || ''}</textarea>
-                        </div>
-                      </div>
-                    </div>
-                    <button onclick="removeAssetCategory(${category.id})" class="text-red-500 hover:text-red-700 px-2 ml-4">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                  
-                  <div class="space-y-3">
-                    ${category.items?.map(item => `
-                      <div class="bg-white border border-gray-200 rounded p-4">
-                        <div class="flex items-start space-x-3">
-                          <input type="checkbox" ${item.completed ? 'checked' : ''} 
-                                 onchange="toggleAssetItem(${item.id}, this.checked)"
-                                 class="w-4 h-4 text-green-600 rounded mt-1">
-                          <div class="flex-1">
-                            <div class="editable text-gray-800" 
-                                 contenteditable="true"
-                                 onblur="updateAssetItem(${item.id}, 'item', this.textContent)">${item.item}</div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                              <div>
-                                <span class="text-xs text-gray-500">Updated by ${item.updatedBy} - ${new Date(item.updatedAt).toLocaleString()}</span>
-                              </div>
-                              <div>
-                                <textarea class="w-full text-xs border border-gray-300 rounded px-2 py-1 resize-none" 
-                                          rows="2" placeholder="Item comments..."
-                                          onblur="updateAssetItem(${item.id}, 'comments', this.value)">${item.comments || ''}</textarea>
-                              </div>
-                            </div>
-                          </div>
-                          <button onclick="removeAssetItem(${item.id})" class="text-red-500 hover:text-red-700 px-2">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    `).join('')}
-                    
-                    <button onclick="addAssetItem(${category.id})" class="w-full bg-purple-100 hover:bg-purple-200 text-purple-700 px-3 py-2 rounded border border-dashed border-purple-300">
-                      <i class="fas fa-plus mr-1"></i>Add Asset Item
-                    </button>
-                  </div>
-                </div>
-              `).join('') || '<p class="text-gray-500 text-center py-8">No asset categories yet.</p>'}
-            </div>
-          </div>
-        `;
-      }
-      
-      function renderMilestones() {
-        return `
-          <div>
-            <div class="flex justify-between items-center mb-6">
-              <h2 class="text-2xl font-bold text-gray-800">Key Milestones</h2>
-              <button onclick="addMilestone()" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded">
-                <i class="fas fa-plus mr-1"></i>Add Milestone
-              </button>
-            </div>
-            <div class="space-y-4">
-              ${projectData.milestones?.map(milestone => `
-                <div class="bg-white border-l-4 ${milestone.completed ? 'border-green-500 bg-green-50' : 'border-green-500'} rounded-r-lg p-6 shadow-sm">
-                  <div class="flex items-start space-x-4">
-                    <input type="checkbox" ${milestone.completed ? 'checked' : ''} 
-                           onchange="toggleMilestone(${milestone.id}, this.checked)"
-                           class="w-5 h-5 text-green-600 rounded mt-1">
-                    <div class="flex-1">
-                      <h4 class="font-semibold text-lg editable text-gray-800" 
-                          contenteditable="true"
-                          onblur="updateMilestone(${milestone.id}, 'title', this.textContent)">${milestone.title}</h4>
-                      <p class="text-gray-600 mt-1 editable" 
-                         contenteditable="true"
-                         onblur="updateMilestone(${milestone.id}, 'description', this.textContent)">${milestone.description}</p>
-                      
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                        <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-1">Updated By</label>
-                          <div class="text-sm text-gray-600">${milestone.updatedBy} - ${new Date(milestone.updatedAt).toLocaleString()}</div>
-                        </div>
-                        <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-1">Comments</label>
-                          <textarea class="w-full text-sm border border-gray-300 rounded px-2 py-1 resize-none" 
-                                    rows="2" placeholder="Milestone comments..."
-                                    onblur="updateMilestone(${milestone.id}, 'comments', this.value)">${milestone.comments || ''}</textarea>
-                        </div>
-                      </div>
-                    </div>
-                    <button onclick="removeMilestone(${milestone.id})" class="text-red-500 hover:text-red-700 px-2">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
-              `).join('') || '<p class="text-gray-500 text-center py-8">No milestones yet.</p>'}
-            </div>
-          </div>
-        `;
-      }
-      
-      function renderCalls() {
-        return `
-          <div>
-            <div class="flex justify-between items-center mb-6">
-              <h2 class="text-2xl font-bold text-gray-800">Calls and Discussions</h2>
-              <button onclick="addCall()" class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded">
-                <i class="fas fa-plus mr-1"></i>Add Call
-              </button>
-            </div>
-            <div class="space-y-6">
-              ${projectData.calls?.map(call => `
-                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div class="flex justify-between items-start mb-4">
-                    <h4 class="font-semibold text-xl text-gray-800 editable" 
-                        contenteditable="true"
-                        onblur="updateCall(${call.id}, 'title', this.textContent)">${call.title}</h4>
-                    <button onclick="removeCall(${call.id})" class="text-red-500 hover:text-red-700 px-2">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                  
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                      <div class="px-3 py-2 bg-green-50 border border-green-200 rounded editable" 
-                           contenteditable="true"
-                           onblur="updateCall(${call.id}, 'status', this.textContent)">${call.status}</div>
-                    </div>
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">Date & Time</label>
-                      <div class="px-3 py-2 bg-gray-50 border border-gray-200 rounded editable" 
-                           contenteditable="true"
-                           onblur="updateCall(${call.id}, 'date', this.textContent)">${call.date}</div>
-                    </div>
-                  </div>
-                  
-                  <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                    <div class="px-3 py-2 bg-gray-50 border border-gray-200 rounded min-h-[60px] editable" 
-                         contenteditable="true"
-                         onblur="updateCall(${call.id}, 'description', this.textContent)">${call.description}</div>
-                  </div>
-                  
-                  <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Attendees</label>
-                    <div class="px-3 py-2 bg-gray-50 border border-gray-200 rounded editable" 
-                         contenteditable="true"
-                         onblur="updateCall(${call.id}, 'attendees', this.textContent)">${call.attendees}</div>
-                  </div>
-                  
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">Updated By</label>
-                      <div class="text-sm text-gray-600">${call.updatedBy} - ${new Date(call.updatedAt).toLocaleString()}</div>
-                    </div>
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">Comments</label>
-                      <textarea class="w-full text-sm border border-gray-300 rounded px-2 py-1 resize-none" 
-                                rows="3" placeholder="Call notes and comments..."
-                                onblur="updateCall(${call.id}, 'comments', this.value)">${call.comments || ''}</textarea>
-                    </div>
-                  </div>
-                </div>
-              `).join('') || '<p class="text-gray-500 text-center py-8">No calls scheduled yet.</p>'}
-            </div>
-          </div>
-        `;
-      }
-      
-      function renderChangeLog() {
-        return `
-          <div>
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Change Log</h2>
-            <div class="space-y-3">
-              ${projectData.changeLog?.map(log => `
-                <div class="border border-gray-200 rounded p-4 bg-gray-50">
-                  <div class="flex justify-between items-start">
-                    <div>
-                      <div class="font-medium text-gray-800">${log.user}</div>
-                      <div class="text-sm text-gray-600">${log.action} - ${log.details}</div>
-                    </div>
-                    <div class="text-xs text-gray-500">
-                      ${new Date(log.timestamp).toLocaleString()}
-                    </div>
-                  </div>
-                </div>
-              `).join('') || '<p class="text-gray-500">No changes recorded yet.</p>'}
-            </div>
-          </div>
-        `;
-      }
-      
-      // Data manipulation functions
-      function updateProjectInfo(field, value) {
-        projectData[field] = value;
-        saveData(projectData);
-      }
-      
-      function togglePrerequisite(id, completed) {
-        const item = projectData.prerequisites.find(p => p.id === id);
-        if (item) {
-          item.completed = completed;
-          item.updatedBy = currentUser;
-          item.updatedAt = new Date().toISOString();
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      function updatePrerequisiteItem(id, text) {
-        const item = projectData.prerequisites.find(p => p.id === id);
-        if (item) {
-          item.item = text;
-          item.updatedBy = currentUser;
-          item.updatedAt = new Date().toISOString();
-          saveData(projectData);
-        }
-      }
-      
-      function updatePrerequisiteComments(id, comments) {
-        const item = projectData.prerequisites.find(p => p.id === id);
-        if (item) {
-          item.comments = comments;
-          item.updatedBy = currentUser;
-          item.updatedAt = new Date().toISOString();
-          saveData(projectData);
-        }
-      }
-      
-      function addPrerequisite() {
-        const newId = Math.max(...projectData.prerequisites.map(p => p.id), 0) + 1;
-        projectData.prerequisites.push({
-          id: newId,
-          item: 'New prerequisite',
-          completed: false,
-          updatedBy: currentUser,
-          updatedAt: new Date().toISOString(),
-          comments: ''
-        });
-        saveData(projectData);
-        refreshAfterChange();
-      }
-      
-      function removePrerequisite(id) {
-        if (confirm('Remove this prerequisite?')) {
-          projectData.prerequisites = projectData.prerequisites.filter(p => p.id !== id);
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      function addPhase() {
-        const newId = Math.max(...projectData.phases.map(p => p.id), 0) + 1;
-        projectData.phases.push({
-          id: newId,
-          name: 'New Phase',
-          period: 'Date Range',
-          updatedBy: currentUser,
-          updatedAt: new Date().toISOString(),
-          comments: '',
-          tasks: []
-        });
-        saveData(projectData);
-        refreshAfterChange();
-      }
-      
-      function removePhase(id) {
-        if (confirm('Remove this phase and all its tasks?')) {
-          projectData.phases = projectData.phases.filter(p => p.id !== id);
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      function updatePhase(id, field, value) {
-        const phase = projectData.phases.find(p => p.id === id);
-        if (phase) {
-          phase[field] = value;
-          phase.updatedBy = currentUser;
-          phase.updatedAt = new Date().toISOString();
-          saveData(projectData);
-        }
-      }
-      
-      function addTask(phaseId) {
-        const phase = projectData.phases.find(p => p.id === phaseId);
-        if (phase) {
-          const newId = Math.max(...projectData.phases.flatMap(p => p.tasks.map(t => t.id)), 0) + 1;
-          phase.tasks.push({
-            id: newId,
-            task: 'New Task',
-            assignee: 'Assignee',
-            dueDate: 'Due Date',
-            status: 'not-started',
-            updatedBy: currentUser,
-            updatedAt: new Date().toISOString(),
-            comments: ''
-          });
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      function updateTask(id, field, value) {
-        for (const phase of projectData.phases) {
-          const task = phase.tasks.find(t => t.id === id);
-          if (task) {
-            task[field] = value;
-            task.updatedBy = currentUser;
-            task.updatedAt = new Date().toISOString();
-            saveData(projectData);
-            if (field === 'status') {
-              refreshAfterChange(); // Refresh to update colors
+        // Initialize the application
+        async function initApp() {
+            try {
+                await loadProjectData();
+                renderAllSections();
+                hideLoadingScreen();
+            } catch (error) {
+                console.error('Failed to initialize app:', error);
+                hideLoadingScreen();
+                showError('Failed to load project data');
             }
-            return;
-          }
         }
-      }
-      
-      function removeTask(id) {
-        if (confirm('Remove this task?')) {
-          for (const phase of projectData.phases) {
-            phase.tasks = phase.tasks.filter(t => t.id !== id);
-          }
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      // Asset category functions
-      function addAssetCategory() {
-        const newId = Math.max(...projectData.assetCategories.map(c => c.id), 0) + 1;
-        projectData.assetCategories.push({
-          id: newId,
-          name: 'New Asset Category',
-          updatedBy: currentUser,
-          updatedAt: new Date().toISOString(),
-          comments: '',
-          items: []
-        });
-        saveData(projectData);
-        refreshAfterChange();
-      }
-      
-      function updateAssetCategory(id, field, value) {
-        const category = projectData.assetCategories.find(c => c.id === id);
-        if (category) {
-          category[field] = value;
-          category.updatedBy = currentUser;
-          category.updatedAt = new Date().toISOString();
-          saveData(projectData);
-        }
-      }
-      
-      function removeAssetCategory(id) {
-        if (confirm('Remove this asset category and all its items?')) {
-          projectData.assetCategories = projectData.assetCategories.filter(c => c.id !== id);
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      function addAssetItem(categoryId) {
-        const category = projectData.assetCategories.find(c => c.id === categoryId);
-        if (category) {
-          const newId = Math.max(...projectData.assetCategories.flatMap(c => c.items.map(i => i.id)), 0) + 1;
-          category.items.push({
-            id: newId,
-            item: 'New Asset Item',
-            completed: false,
-            updatedBy: currentUser,
-            updatedAt: new Date().toISOString(),
-            comments: ''
-          });
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      function updateAssetItem(id, field, value) {
-        for (const category of projectData.assetCategories) {
-          const item = category.items.find(i => i.id === id);
-          if (item) {
-            item[field] = value;
-            item.updatedBy = currentUser;
-            item.updatedAt = new Date().toISOString();
-            saveData(projectData);
-            return;
-          }
-        }
-      }
-      
-      function toggleAssetItem(id, completed) {
-        for (const category of projectData.assetCategories) {
-          const item = category.items.find(i => i.id === id);
-          if (item) {
-            item.completed = completed;
-            item.updatedBy = currentUser;
-            item.updatedAt = new Date().toISOString();
-            saveData(projectData);
-            refreshAfterChange();
-            return;
-          }
-        }
-      }
-      
-      function removeAssetItem(id) {
-        if (confirm('Remove this asset item?')) {
-          for (const category of projectData.assetCategories) {
-            category.items = category.items.filter(i => i.id !== id);
-          }
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      // Milestone functions
-      function addMilestone() {
-        const newId = Math.max(...projectData.milestones.map(m => m.id), 0) + 1;
-        projectData.milestones.push({
-          id: newId,
-          title: 'New Milestone',
-          description: 'Milestone description',
-          completed: false,
-          updatedBy: currentUser,
-          updatedAt: new Date().toISOString(),
-          comments: ''
-        });
-        saveData(projectData);
-        refreshAfterChange();
-      }
-      
-      function updateMilestone(id, field, value) {
-        const milestone = projectData.milestones.find(m => m.id === id);
-        if (milestone) {
-          milestone[field] = value;
-          milestone.updatedBy = currentUser;
-          milestone.updatedAt = new Date().toISOString();
-          saveData(projectData);
-        }
-      }
-      
-      function toggleMilestone(id, completed) {
-        const milestone = projectData.milestones.find(m => m.id === id);
-        if (milestone) {
-          milestone.completed = completed;
-          milestone.updatedBy = currentUser;
-          milestone.updatedAt = new Date().toISOString();
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      function removeMilestone(id) {
-        if (confirm('Remove this milestone?')) {
-          projectData.milestones = projectData.milestones.filter(m => m.id !== id);
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      // Calls and discussions functions
-      function addCall() {
-        const newId = Math.max(...projectData.calls.map(c => c.id), 0) + 1;
-        projectData.calls.push({
-          id: newId,
-          title: 'New Call',
-          status: 'Scheduled',
-          description: 'Call description',
-          date: 'Date and time',
-          attendees: 'Attendees list',
-          updatedBy: currentUser,
-          updatedAt: new Date().toISOString(),
-          comments: ''
-        });
-        saveData(projectData);
-        refreshAfterChange();
-      }
-      
-      function updateCall(id, field, value) {
-        const call = projectData.calls.find(c => c.id === id);
-        if (call) {
-          call[field] = value;
-          call.updatedBy = currentUser;
-          call.updatedAt = new Date().toISOString();
-          saveData(projectData);
-        }
-      }
-      
-      function removeCall(id) {
-        if (confirm('Remove this call?')) {
-          projectData.calls = projectData.calls.filter(c => c.id !== id);
-          saveData(projectData);
-          refreshAfterChange();
-        }
-      }
-      
-      // Polling for real-time updates
-      async function checkForUpdates() {
-    // Disabled auto-updates - was causing app freeze
-    return;
-}
 
-      
-      function initApp() {
-        loadData();
-        
-        // Check for updates every 3 seconds
-        // setInterval(checkForUpdates, 5000); // Disabled - was causing freezes
-
-      }
-      
-      // Initialize
-      document.addEventListener('DOMContentLoaded', function() {
-        if (!currentUser) {
-          showUserModal();
-        } else {
-          initApp();
+        // Load project data from API
+        async function loadProjectData() {
+            try {
+                const response = await fetch('/api/data');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                projectData = await response.json();
+                
+                // Update title and period
+                document.getElementById('projectTitle').textContent = projectData.title || 'Untitled Project';
+                document.getElementById('projectPeriod').textContent = projectData.period || 'No period set';
+                
+                return projectData;
+            } catch (error) {
+                console.error('Error loading project data:', error);
+                // Fallback to empty data structure
+                projectData = {
+                    title: 'Blended Collective Website Rebuild',
+                    period: 'Project Management Hub',
+                    prerequisites: [],
+                    assetCategories: [],
+                    phases: [],
+                    milestones: [],
+                    calls: [],
+                    changeLog: []
+                };
+                return projectData;
+            }
         }
-      });
+
+        // Save project data to API
+        async function saveProjectData() {
+            try {
+                const response = await fetch('/api/data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(projectData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                showSuccess('Changes saved successfully');
+                updateChangeLog('UPDATE', 'Updated project data');
+                document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+                
+            } catch (error) {
+                console.error('Error saving project data:', error);
+                showError('Failed to save changes');
+            }
+        }
+
+        // Render all sections
+        function renderAllSections() {
+            renderPrerequisites();
+            renderAssetCategories();
+            renderPhases();
+            renderMilestones();
+            renderCalls();
+            renderChangeLog();
+        }
+
+        // Prerequisites functions
+        function renderPrerequisites() {
+            const container = document.getElementById('prerequisitesList');
+            if (!projectData.prerequisites) projectData.prerequisites = [];
+            
+            container.innerHTML = projectData.prerequisites.map(item => `
+                <div class="flex items-center justify-between p-3 bg-black bg-opacity-20 rounded">
+                    <div class="flex items-center flex-1">
+                        <input type="checkbox" ${item.completed ? 'checked' : ''} 
+                               onchange="togglePrerequisite(${item.id})" 
+                               class="mr-3 w-4 h-4">
+                        <span class="${item.completed ? 'line-through opacity-60' : ''}">${item.item}</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="editPrerequisite(${item.id})" class="text-blue-400 hover:text-blue-300">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="removePrerequisite(${item.id})" class="text-red-400 hover:text-red-300">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addPrerequisite() {
+            const item = prompt('Enter prerequisite item:');
+            if (!item) return;
+
+            const newItem = {
+                id: Date.now(),
+                project_id: "550e8400-e29b-41d4-a716-446655440000",
+                item: item,
+                completed: false,
+                updated_by: "User",
+                updated_at: new Date().toISOString(),
+                comments: ""
+            };
+
+            projectData.prerequisites.push(newItem);
+            renderPrerequisites();
+            saveProjectData();
+        }
+
+        function togglePrerequisite(id) {
+            const item = projectData.prerequisites.find(p => p.id === id);
+            if (item) {
+                item.completed = !item.completed;
+                item.updated_at = new Date().toISOString();
+                renderPrerequisites();
+                saveProjectData();
+            }
+        }
+
+        function editPrerequisite(id) {
+            const item = projectData.prerequisites.find(p => p.id === id);
+            if (item) {
+                const newText = prompt('Edit prerequisite:', item.item);
+                if (newText !== null) {
+                    item.item = newText;
+                    item.updated_at = new Date().toISOString();
+                    renderPrerequisites();
+                    saveProjectData();
+                }
+            }
+        }
+
+        function removePrerequisite(id) {
+            if (confirm('Are you sure you want to remove this prerequisite?')) {
+                projectData.prerequisites = projectData.prerequisites.filter(p => p.id !== id);
+                renderPrerequisites();
+                saveProjectData();
+            }
+        }
+
+        // Asset Categories functions
+        function renderAssetCategories() {
+            const container = document.getElementById('assetCategoriesList');
+            if (!projectData.assetCategories) projectData.assetCategories = [];
+            
+            container.innerHTML = projectData.assetCategories.map(category => `
+                <div class="border-l-4 border-studio77-accent pl-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-semibold">${category.name}</h3>
+                        <div class="space-x-2">
+                            <button onclick="addAssetItem(${category.id})" class="text-green-400 hover:text-green-300">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button onclick="editAssetCategory(${category.id})" class="text-blue-400 hover:text-blue-300">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="removeAssetCategory(${category.id})" class="text-red-400 hover:text-red-300">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-2 ml-4">
+                        ${(category.asset_items || []).map(assetItem => `
+                            <div class="flex items-center justify-between p-2 bg-black bg-opacity-10 rounded">
+                                <div class="flex items-center">
+                                    <input type="checkbox" ${assetItem.completed ? 'checked' : ''} 
+                                           onchange="toggleAssetItem(${category.id}, ${assetItem.id})" 
+                                           class="mr-2 w-4 h-4">
+                                    <span class="${assetItem.completed ? 'line-through opacity-60' : ''}">${assetItem.item}</span>
+                                </div>
+                                <button onclick="removeAssetItem(${category.id}, ${assetItem.id})" class="text-red-400 hover:text-red-300">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAssetCategory() {
+            const name = prompt('Enter category name:');
+            if (!name) return;
+
+            const newCategory = {
+                id: Date.now(),
+                project_id: "550e8400-e29b-41d4-a716-446655440000",
+                name: name,
+                updated_by: "User",
+                updated_at: new Date().toISOString(),
+                comments: "",
+                asset_items: []
+            };
+
+            projectData.assetCategories.push(newCategory);
+            renderAssetCategories();
+            saveProjectData();
+        }
+
+        function addAssetItem(categoryId) {
+            const item = prompt('Enter asset item:');
+            if (!item) return;
+
+            const category = projectData.assetCategories.find(c => c.id === categoryId);
+            if (category) {
+                if (!category.asset_items) category.asset_items = [];
+                
+                const newItem = {
+                    id: Date.now(),
+                    item: item,
+                    completed: false,
+                    updated_at: new Date().toISOString(),
+                    updated_by: "User",
+                    category_id: categoryId
+                };
+
+                category.asset_items.push(newItem);
+                renderAssetCategories();
+                saveProjectData();
+            }
+        }
+
+        function toggleAssetItem(categoryId, itemId) {
+            const category = projectData.assetCategories.find(c => c.id === categoryId);
+            if (category && category.asset_items) {
+                const item = category.asset_items.find(i => i.id === itemId);
+                if (item) {
+                    item.completed = !item.completed;
+                    item.updated_at = new Date().toISOString();
+                    renderAssetCategories();
+                    saveProjectData();
+                }
+            }
+        }
+
+        function editAssetCategory(id) {
+            const category = projectData.assetCategories.find(c => c.id === id);
+            if (category) {
+                const newName = prompt('Edit category name:', category.name);
+                if (newName !== null) {
+                    category.name = newName;
+                    category.updated_at = new Date().toISOString();
+                    renderAssetCategories();
+                    saveProjectData();
+                }
+            }
+        }
+
+        function removeAssetCategory(id) {
+            if (confirm('Are you sure you want to remove this category and all its items?')) {
+                projectData.assetCategories = projectData.assetCategories.filter(c => c.id !== id);
+                renderAssetCategories();
+                saveProjectData();
+            }
+        }
+
+        function removeAssetItem(categoryId, itemId) {
+            const category = projectData.assetCategories.find(c => c.id === categoryId);
+            if (category && category.asset_items) {
+                category.asset_items = category.asset_items.filter(i => i.id !== itemId);
+                renderAssetCategories();
+                saveProjectData();
+            }
+        }
+
+        // Phases functions
+        function renderPhases() {
+            const container = document.getElementById('phasesList');
+            if (!projectData.phases) projectData.phases = [];
+            
+            container.innerHTML = projectData.phases.map(phase => `
+                <div class="border border-gray-600 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <h3 class="font-semibold text-lg">${phase.name}</h3>
+                            <p class="text-sm studio77-accent">${phase.period}</p>
+                        </div>
+                        <div class="space-x-2">
+                            <button onclick="addTask(${phase.id})" class="text-green-400 hover:text-green-300">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button onclick="editPhase(${phase.id})" class="text-blue-400 hover:text-blue-300">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="removePhase(${phase.id})" class="text-red-400 hover:text-red-300">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        ${(phase.tasks || []).map(task => `
+                            <div class="flex items-center justify-between p-3 bg-black bg-opacity-20 rounded">
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="font-medium">${task.task}</span>
+                                        <select onchange="updateTaskStatus(${phase.id}, ${task.id}, this.value)" 
+                                                class="bg-gray-700 text-white px-2 py-1 rounded text-sm">
+                                            <option value="not-started" ${task.status === 'not-started' ? 'selected' : ''}>Not Started</option>
+                                            <option value="in-progress" ${task.status === 'in-progress' ? 'selected' : ''}>In Progress</option>
+                                            <option value="completed" ${task.status === 'completed' ? 'selected' : ''}>Completed</option>
+                                            <option value="pending" ${task.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-sm opacity-75 mt-1">
+                                        Assigned to: ${task.assignee} | Due: ${task.due_date}
+                                    </div>
+                                </div>
+                                <button onclick="removeTask(${phase.id}, ${task.id})" class="text-red-400 hover:text-red-300 ml-4">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addPhase() {
+            const name = prompt('Enter phase name:');
+            if (!name) return;
+            
+            const period = prompt('Enter phase period:') || 'TBD';
+
+            const newPhase = {
+                id: Date.now(),
+                project_id: "550e8400-e29b-41d4-a716-446655440000",
+                name: name,
+                period: period,
+                updated_by: "User",
+                updated_at: new Date().toISOString(),
+                comments: "",
+                tasks: []
+            };
+
+            projectData.phases.push(newPhase);
+            renderPhases();
+            saveProjectData();
+        }
+
+        function addTask(phaseId) {
+            const task = prompt('Enter task name:');
+            if (!task) return;
+            
+            const assignee = prompt('Assign to:') || 'Unassigned';
+            const dueDate = prompt('Due date:') || 'TBD';
+
+            const phase = projectData.phases.find(p => p.id === phaseId);
+            if (phase) {
+                if (!phase.tasks) phase.tasks = [];
+                
+                const newTask = {
+                    id: Date.now(),
+                    task: task,
+                    status: 'not-started',
+                    assignee: assignee,
+                    due_date: dueDate,
+                    phase_id: phaseId,
+                    updated_at: new Date().toISOString(),
+                    updated_by: "User",
+                    comments: ""
+                };
+
+                phase.tasks.push(newTask);
+                renderPhases();
+                saveProjectData();
+            }
+        }
+
+        function updateTaskStatus(phaseId, taskId, newStatus) {
+            const phase = projectData.phases.find(p => p.id === phaseId);
+            if (phase && phase.tasks) {
+                const task = phase.tasks.find(t => t.id === taskId);
+                if (task) {
+                    task.status = newStatus;
+                    task.updated_at = new Date().toISOString();
+                    saveProjectData();
+                }
+            }
+        }
+
+        function editPhase(id) {
+            const phase = projectData.phases.find(p => p.id === id);
+            if (phase) {
+                const newName = prompt('Edit phase name:', phase.name);
+                if (newName !== null) {
+                    phase.name = newName;
+                    const newPeriod = prompt('Edit phase period:', phase.period);
+                    if (newPeriod !== null) {
+                        phase.period = newPeriod;
+                        phase.updated_at = new Date().toISOString();
+                        renderPhases();
+                        saveProjectData();
+                    }
+                }
+            }
+        }
+
+        function removePhase(id) {
+            if (confirm('Are you sure you want to remove this phase and all its tasks?')) {
+                projectData.phases = projectData.phases.filter(p => p.id !== id);
+                renderPhases();
+                saveProjectData();
+            }
+        }
+
+        function removeTask(phaseId, taskId) {
+            const phase = projectData.phases.find(p => p.id === phaseId);
+            if (phase && phase.tasks) {
+                phase.tasks = phase.tasks.filter(t => t.id !== taskId);
+                renderPhases();
+                saveProjectData();
+            }
+        }
+
+        // Milestones functions
+        function renderMilestones() {
+            const container = document.getElementById('milestonesList');
+            if (!projectData.milestones) projectData.milestones = [];
+            
+            container.innerHTML = projectData.milestones.map(milestone => `
+                <div class="flex items-center justify-between p-3 bg-black bg-opacity-20 rounded">
+                    <div class="flex items-center flex-1">
+                        <input type="checkbox" ${milestone.completed ? 'checked' : ''} 
+                               onchange="toggleMilestone(${milestone.id})" 
+                               class="mr-3 w-4 h-4">
+                        <div>
+                            <div class="font-medium ${milestone.completed ? 'line-through opacity-60' : ''}">${milestone.title}</div>
+                            <div class="text-sm opacity-75">${milestone.description}</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="editMilestone(${milestone.id})" class="text-blue-400 hover:text-blue-300">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="removeMilestone(${milestone.id})" class="text-red-400 hover:text-red-300">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addMilestone() {
+            const title = prompt('Enter milestone title:');
+            if (!title) return;
+            
+            const description = prompt('Enter milestone description:') || '';
+
+            const newMilestone = {
+                id: Date.now(),
+                project_id: "550e8400-e29b-41d4-a716-446655440000",
+                title: title,
+                description: description,
+                completed: false,
+                updated_by: "User",
+                updated_at: new Date().toISOString(),
+                comments: ""
+            };
+
+            projectData.milestones.push(newMilestone);
+            renderMilestones();
+            saveProjectData();
+        }
+
+        function toggleMilestone(id) {
+            const milestone = projectData.milestones.find(m => m.id === id);
+            if (milestone) {
+                milestone.completed = !milestone.completed;
+                milestone.updated_at = new Date().toISOString();
+                renderMilestones();
+                saveProjectData();
+            }
+        }
+
+        function editMilestone(id) {
+            const milestone = projectData.milestones.find(m => m.id === id);
+            if (milestone) {
+                const newTitle = prompt('Edit milestone title:', milestone.title);
+                if (newTitle !== null) {
+                    milestone.title = newTitle;
+                    const newDescription = prompt('Edit milestone description:', milestone.description);
+                    if (newDescription !== null) {
+                        milestone.description = newDescription;
+                        milestone.updated_at = new Date().toISOString();
+                        renderMilestones();
+                        saveProjectData();
+                    }
+                }
+            }
+        }
+
+        function removeMilestone(id) {
+            if (confirm('Are you sure you want to remove this milestone?')) {
+                projectData.milestones = projectData.milestones.filter(m => m.id !== id);
+                renderMilestones();
+                saveProjectData();
+            }
+        }
+
+        // Calls functions
+        function renderCalls() {
+            const container = document.getElementById('callsList');
+            if (!projectData.calls) projectData.calls = [];
+            
+            container.innerHTML = projectData.calls.map(call => `
+                <div class="p-3 bg-black bg-opacity-20 rounded">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="font-medium">${call.title}</div>
+                            <div class="text-sm opacity-75">${call.date} | ${call.attendees}</div>
+                            <div class="text-sm mt-1">${call.description}</div>
+                            <div class="text-xs studio77-accent mt-1">Status: ${call.status}</div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="editCall(${call.id})" class="text-blue-400 hover:text-blue-300">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="removeCall(${call.id})" class="text-red-400 hover:text-red-300">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addCall() {
+            const title = prompt('Enter call title:');
+            if (!title) return;
+            
+            const date = prompt('Enter date and time:') || 'TBD';
+            const attendees = prompt('Enter attendees:') || 'TBD';
+            const description = prompt('Enter description:') || '';
+
+            const newCall = {
+                id: Date.now(),
+                project_id: "550e8400-e29b-41d4-a716-446655440000",
+                title: title,
+                status: "Scheduled",
+                description: description,
+                date: date,
+                attendees: attendees,
+                updated_by: "User",
+                updated_at: new Date().toISOString(),
+                comments: ""
+            };
+
+            projectData.calls.push(newCall);
+            renderCalls();
+            saveProjectData();
+        }
+
+        function editCall(id) {
+            const call = projectData.calls.find(c => c.id === id);
+            if (call) {
+                const newTitle = prompt('Edit call title:', call.title);
+                if (newTitle !== null) {
+                    call.title = newTitle;
+                    const newDate = prompt('Edit date and time:', call.date);
+                    if (newDate !== null) {
+                        call.date = newDate;
+                        const newAttendees = prompt('Edit attendees:', call.attendees);
+                        if (newAttendees !== null) {
+                            call.attendees = newAttendees;
+                            const newDescription = prompt('Edit description:', call.description);
+                            if (newDescription !== null) {
+                                call.description = newDescription;
+                                call.updated_at = new Date().toISOString();
+                                renderCalls();
+                                saveProjectData();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function removeCall(id) {
+            if (confirm('Are you sure you want to remove this call?')) {
+                projectData.calls = projectData.calls.filter(c => c.id !== id);
+                renderCalls();
+                saveProjectData();
+            }
+        }
+
+        // Change log functions
+        function renderChangeLog() {
+            const container = document.getElementById('changeLogList');
+            if (!projectData.changeLog) projectData.changeLog = [];
+            
+            // Show only the last 10 changes
+            const recentChanges = projectData.changeLog.slice(-10).reverse();
+            
+            container.innerHTML = recentChanges.map(change => `
+                <div class="flex items-center justify-between p-2 bg-black bg-opacity-10 rounded text-sm">
+                    <div>
+                        <span class="font-medium">${change.user}</span>
+                        <span class="opacity-75">- ${change.details}</span>
+                    </div>
+                    <div class="text-xs opacity-60">
+                        ${new Date(change.timestamp).toLocaleString()}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateChangeLog(action, details) {
+            if (!projectData.changeLog) projectData.changeLog = [];
+            
+            const logEntry = {
+                id: Date.now(),
+                user: "User",
+                action: action,
+                details: details,
+                timestamp: new Date().toISOString()
+            };
+            
+            projectData.changeLog.push(logEntry);
+            renderChangeLog();
+        }
+
+        // Utility functions
+        function hideLoadingScreen() {
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+        }
+
+        function showSuccess(message) {
+            // Simple success notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded shadow-lg z-50';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function showError(message) {
+            // Simple error notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-red-600 text-white px-4 py-2 rounded shadow-lg z-50';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // Handle title and period editing
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectTitle = document.getElementById('projectTitle');
+            const projectPeriod = document.getElementById('projectPeriod');
+            
+            projectTitle.addEventListener('blur', function() {
+                projectData.title = this.textContent;
+                saveProjectData();
+            });
+            
+            projectPeriod.addEventListener('blur', function() {
+                projectData.period = this.textContent;
+                saveProjectData();
+            });
+            
+            // Initialize the app
+            initApp();
+        });
+
+        // Auto-save when user types in editable fields
+        document.addEventListener('input', function(e) {
+            if (e.target.contentEditable === 'true') {
+                clearTimeout(window.autoSaveTimer);
+                window.autoSaveTimer = setTimeout(() => {
+                    if (e.target.id === 'projectTitle') {
+                        projectData.title = e.target.textContent;
+                    } else if (e.target.id === 'projectPeriod') {
+                        projectData.period = e.target.textContent;
+                    }
+                    saveProjectData();
+                }, 1000);
+            }
+        });
     </script>
 </body>
 </html>
