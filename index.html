@@ -576,7 +576,7 @@
           const response = await fetch('/api/data', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data, user: currentUser })
+            body: JSON.stringify(data)
           });
           
           if (response.ok) {
@@ -1365,19 +1365,8 @@
         }
       }
       
-      // Polling for real-time updates
-      async function checkForUpdates() {
-    // Disabled auto-updates - was causing app freeze
-    return;
-}
-
-      
       function initApp() {
         loadData();
-        
-        // Check for updates every 3 seconds
-        // setInterval(checkForUpdates, 5000); // Disabled - was causing freezes
-
       }
       
       // Initialize
