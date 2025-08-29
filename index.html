@@ -1367,29 +1367,17 @@
       
       // Polling for real-time updates
       async function checkForUpdates() {
-        try {
-          const response = await fetch(`/api/changes?since=${lastCheck}`);
-          const data = await response.json();
-          
-          if (data.changes && data.changes.length > 0) {
-            const otherUserChanges = data.changes.filter(change => change.user !== currentUser);
-            if (otherUserChanges.length > 0) {
-              showNotification(`${otherUserChanges[0].user} made changes`, 'info');
-              await loadData(); // Reload data
-            }
-          }
-          
-          lastCheck = data.lastUpdate || lastCheck;
-        } catch (error) {
-          console.error('Failed to check for updates:', error);
-        }
-      }
+    // Disabled auto-updates - was causing app freeze
+    return;
+}
+
       
       function initApp() {
         loadData();
         
         // Check for updates every 3 seconds
-        setInterval(checkForUpdates, 3000);
+        // setInterval(checkForUpdates, 5000); // Disabled - was causing freezes
+
       }
       
       // Initialize
